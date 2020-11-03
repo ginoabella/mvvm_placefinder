@@ -42,3 +42,4 @@ app.*.map.json
 
 **/AppDelegate.swift
 **/AndroidManifest.xml
+**/constant_key.dart

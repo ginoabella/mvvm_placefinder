@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:place_finder/models/place.dart';
 import 'package:place_finder/services/error_service.dart';
 import 'package:place_finder/services/web_service.dart';
@@ -9,9 +10,16 @@ enum LoadingStatus { error, empty, searching, success }
 class PlaceListViewModel extends ChangeNotifier {
   List<PlaceViewModel> _places = <PlaceViewModel>[];
   LoadingStatus _state;
+  MapType _mapType = MapType.normal;
 
   LoadingStatus get state => _state;
   List<PlaceViewModel> get places => _places;
+  MapType get mapType => _mapType;
+
+  void toggleMapType() {
+    _mapType = _mapType == MapType.normal ? MapType.satellite : MapType.normal;
+    notifyListeners();
+  }
 
   Future<void> fetchPlaceByKeywordAndPosition(
     String keyword,
